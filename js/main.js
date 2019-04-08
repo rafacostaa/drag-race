@@ -7,7 +7,7 @@ let x3 = 0;
 
 //clear function
 function clearCanvas() {
-    ctx.clearRect(0,0,1400,400);
+  ctx.clearRect(0,0,1400,400);
 }
 
 //objects===============================
@@ -155,18 +155,13 @@ treeGreen();
 
 //cars ===============================
 
-// let img = new Image();
-//   img.src = '/img/mx7.png';
-//   function (){ 
-//     ctx.drawImage(img, 30, 200, 100, 100);    
-//   }
-
-  // window.onload = function() {
-  //   let img = '/img/mx7.png';
-  //   ctx.drawImage(img, 30, 200, 100, 100);    
-  // }
-
-
+//MX-7
+  const img  = new Image();
+  img.src = "img/mx7.png";
+  
+  img.onload = function () {
+      ctx.drawImage(img,0,10, 200,100);
+  };
 
 // function drawMoveDash(){
 //     ctx.strokeStyle = 'white';
