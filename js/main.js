@@ -3,83 +3,64 @@ const ctx = myCanvas.getContext('2d');
 
 let x1 = 0;
 let x2 = 0;
+let x3 = 0;
 
+//clear function
 function clearCanvas() {
     ctx.clearRect(0,0,1400,400);
 }
 
-  ctx.fillStyle = "#FF0000";
-  ctx.fillRect(30,50,50,50);
-  ctx.fillStyle = "yellow";
-  ctx.fillRect(30,200,50,50);
-  
-  ctx.beginPath();
-  ctx.lineWidth ='5';
-  ctx.strokeStyle = "white";
-  ctx.setLineDash([17]);
-  ctx.moveTo(0,150);
-  ctx.lineTo(1400, 150);
-  ctx.stroke();
+//objects===============================
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(30,50,50,50);
+
+ctx.fillStyle = "yellow";
+ctx.fillRect(30,200,50,50);
+
+// ctx.fillStyle = "magenta";
+// ctx.fillRect(30,250,50,50);
+
+ctx.beginPath();
+ctx.lineWidth ='5';
+ctx.strokeStyle = "white";
+ctx.setLineDash([17]);
+ctx.moveTo(0,150);
+ctx.lineTo(1400, 150);
+ctx.stroke();
+
+//tree samples canvas===============================
+//red
+// ctx.beginPath();
+// ctx.arc(600, 40, 30, 0, Math.PI * 2);
+// ctx.fillStyle = "red"; // !
+// ctx.fill();
+// ctx.closePath();
+//yellow
+// ctx.beginPath();
+// ctx.arc(670, 40, 30, 0, Math.PI * 2);
+// ctx.fillStyle = "yellow"; // !
+// ctx.fill();
+// ctx.closePath();
+//green
+// ctx.beginPath();
+// ctx.arc(740, 40, 30, 0, Math.PI * 2);
+// ctx.fillStyle = "green"; // !
+// ctx.fill();
+// ctx.closePath();
     
 
-// function startLine (){
-//     // x1 += 10;
-//     // x2 += 10;
-    
-//     // clearCanvas();
-    
-//     ctx.fillStyle = "#FF0000";
-//     ctx.fillRect(30,50,50,50);
-//     ctx.fillStyle = "yellow";
-//     ctx.fillRect(30,200,50,50);
-    
-//     ctx.beginPath();
-//     ctx.lineWidth ='5';
-//     ctx.strokeStyle = "white";
-//     ctx.setLineDash([17]);
-//     ctx.moveTo(0,150);
-//     ctx.lineTo(1400, 150);
-//     ctx.stroke();
-    
-//  // window.requestAnimationFrame(startLine);
-// }
-  
-//window.requestAnimationFrame(startLine);
-
-// function updateCanvas(){
-//     x1+= 10;
-//     x2 += 20;
-    
-//clearCanvas();
-    
-//     ctx.fillStyle = "#FF0000";
-//     ctx.fillRect(x1,50,50,50);
-//     ctx.fillStyle = "yellow";
-//     ctx.fillRect(x2,200,50,50);
-    
-//     ctx.beginPath();
-//     ctx.lineWidth ='5';
-//     ctx.strokeStyle = "white";
-//     ctx.setLineDash([17]);
-//     ctx.moveTo(0,150);
-//     ctx.lineTo(1400+x2, 150);
-//     ctx.stroke();
-    
-    
-//     window.requestAnimationFrame(updateCanvas);
-// }
-
-function accel(){
+//trigger drag - maybe tree===============================
+function moveCPU(){
   x1 += 10;
-  x2 += 20;
-  
+
   clearCanvas();
   
   ctx.fillStyle = "#FF0000";
-  ctx.fillRect(x1,50,50,50);
+  ctx.fillRect(30+x1,50,50,50);
   ctx.fillStyle = "yellow";
-  ctx.fillRect(x2,200,50,50);
+  ctx.fillRect(30+x2,200,50,50);
   
+  //dash line  
   ctx.beginPath();
   ctx.lineWidth ='5';
   ctx.strokeStyle = "white";
@@ -87,38 +68,103 @@ function accel(){
   ctx.moveTo(0,150);
   ctx.lineTo(1400, 150);
   ctx.stroke();
- 
-  console.log(x1,x2);
-  
-window.requestAnimationFrame(accel);
+
+window.requestAnimationFrame(moveCPU);
 }
-//window.requestAnimationFrame(accel);
+
+function movePlayer(){
+  x2 += 10.2;
+
+  clearCanvas();
+  
+  ctx.fillStyle = "#FF0000";
+  ctx.fillRect(30+x1,50,50,50);
+  ctx.fillStyle = "yellow";
+  ctx.fillRect(30+x2,200,50,50);
+
+  //dash line  
+  ctx.beginPath();
+  ctx.lineWidth ='5';
+  ctx.strokeStyle = "white";
+  ctx.setLineDash([17]);
+  ctx.moveTo(0,150);
+  ctx.lineTo(1400, 150);
+  ctx.stroke();
+
+window.requestAnimationFrame(movePlayer);
+}
+
+
 
 function shiftUp(){}
 function nitro(){}
 
+// function accelX2(){
+//   return x3 = 10;
+// }
 
-//set functions to keyboard keys
+
+//set functions to keyboard keys===============================
 window.addEventListener("keydown", event => {
     if (event.isComposing || event.keyCode === 32) {
-      accel();
-      console.log ('space')
-    }else if (event.isComposing || event.keyCode === 38) {
-      shiftUp();
+      movePlayer();
+    }else if (event.isComposing || event.keyCode === 67) {
+      //shiftUp();
+      accelX2();
+      console.log('up');
     }else if (event.isComposing || event.keyCode === 39) {
       nitro();
     }
 }, false);
 
 
+//tree functions TURN TO OBJECT ORIENTED==============================================
+function treeRed (){
+  setInterval(function red() {  
+  ctx.beginPath();
+  ctx.arc(600, 40, 30, 0, Math.PI * 2);
+  ctx.fillStyle = "red";
+  ctx.fill();
+  ctx.closePath()
+  }, 2000);
+}
+treeRed();
 
+function treeYellow (){
+  setInterval(function yellow() {  
+  ctx.beginPath();
+  ctx.arc(670, 40, 30, 0, Math.PI * 2);
+  ctx.fillStyle = "yellow";
+  ctx.fill();
+  ctx.closePath();
+  }, 3000);
+}
+treeYellow();
 
+function treeGreen (){
+  setInterval(function green() {  
+  ctx.beginPath();
+  ctx.arc(740, 40, 30, 0, Math.PI * 2);
+  ctx.fillStyle = "green";
+  ctx.fill();
+  ctx.closePath();  
+  }, 4000);
+  setInterval(moveCPU, 4003);
+}
+treeGreen();
 
+//cars ===============================
 
+// let img = new Image();
+//   img.src = '/img/mx7.png';
+//   function (){ 
+//     ctx.drawImage(img, 30, 200, 100, 100);    
+//   }
 
-
-
-
+  // window.onload = function() {
+  //   let img = '/img/mx7.png';
+  //   ctx.drawImage(img, 30, 200, 100, 100);    
+  // }
 
 
 
