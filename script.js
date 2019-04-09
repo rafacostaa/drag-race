@@ -3,14 +3,21 @@ const canvas = document.getElementById('canvas');
 //variavel para indicar que o canvas será de 2 dimensões
 const ctx = canvas.getContext('2d');
 
-const img  = new Image();
-img.src = "./road texture.jpg";
+// const img  = new Image();
+// img.src = "./road texture.jpg";
 
-img.onload = function () {
-    ctx.drawImage(img,0,50, 1400,350);
-};
+// img.onload = function () {
+//     ctx.drawImage(img,0,50, 1400,350);
+// };
 
 
+
+// const carOne  = new Image();
+// carOne.src = "audi.png";
+
+// img.onload = function () {
+//     ctx.drawImage(img,0,50, 100,100);
+// };
 
 let timeReaction;
 let x1 = 0;
@@ -23,6 +30,7 @@ function clearCanvas() {
 }
 
 //objects===============================
+
 ctx.fillStyle = "#FF0000";
 ctx.fillRect(30,50,50,50);
 
@@ -169,13 +177,13 @@ treeGreen();
 
 //cars ===============================
 
+const img  = new Image();
+img.src = "audi.png";
+
+img.onload = function () {
+    ctx.drawImage(img,0,10, 150,150);
+};
 //MX-7
-  // const img  = new Image();
-  // img.src = "/img/road texture.jpg";
-  
-  // img.onload = function () {
-  //     ctx.drawImage(img,0,10, 200,100);
-  // };
 
 // function drawMoveDash(){
 
