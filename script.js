@@ -1,5 +1,15 @@
-const myCanvas = document.getElementById('myCanvas');
-const ctx = myCanvas.getContext('2d');
+const canvas = document.getElementById('canvas');
+
+//variavel para indicar que o canvas será de 2 dimensões
+const ctx = canvas.getContext('2d');
+
+const img  = new Image();
+img.src = "./road texture.jpg";
+
+img.onload = function () {
+    ctx.drawImage(img,0,50, 1400,350);
+};
+
 
 
 let timeReaction;
@@ -30,25 +40,12 @@ ctx.moveTo(0,150);
 ctx.lineTo(1400, 150);
 ctx.stroke();
 
-//tree samples canvas===============================
-//red
-// ctx.beginPath();
-// ctx.arc(600, 40, 30, 0, Math.PI * 2);
-// ctx.fillStyle = "red"; // !
-// ctx.fill();
-// ctx.closePath();
-//yellow
-// ctx.beginPath();
-// ctx.arc(670, 40, 30, 0, Math.PI * 2);
-// ctx.fillStyle = "yellow"; // !
-// ctx.fill();
-// ctx.closePath();
-//green
-// ctx.beginPath();
-// ctx.arc(740, 40, 30, 0, Math.PI * 2);
-// ctx.fillStyle = "green"; // !
-// ctx.fill();
-// ctx.closePath();
+// const img  = new Image();
+// img.src = "./road texture.jpg";
+
+// img.onload = function () {
+//     ctx.drawImage(img,0,50, 1400,350);
+// };
 
 
 //trigger drag - maybe tree===============================
@@ -76,6 +73,7 @@ function moveCPU(){
 
 function movePlayer(){
   x2 += 10.2;
+  
   
   clearCanvas();
   
@@ -173,7 +171,7 @@ treeGreen();
 
 //MX-7
   // const img  = new Image();
-  // img.src = "img/mx7.png";
+  // img.src = "/img/road texture.jpg";
   
   // img.onload = function () {
   //     ctx.drawImage(img,0,10, 200,100);
@@ -195,14 +193,7 @@ treeGreen();
 //     }
 //   }
 
-    
-//     let img = new Image();
-//     img.src = './images/car.png'
-    
-//     // img.onload = function (){      
-//       ctx.drawImage(img, x, y, 50, 90);    
-//     // }
-//}
+
 
 //   window.onload = function() {
 //   document.getElementById("start-button").onclick = function() {
@@ -210,23 +201,6 @@ treeGreen();
 //   };
 
 
-
-
-//   function obstacles(){
-      
-//     ctx.fillStyle="red";    
-//     ctx.fillRect(firstPosition1, obstacleSpeed, 80, 20);
-//     ctx.fillRect(firstPosition2, obstacleSpeed, 80, 20);
-//     obstacleSpeed += 3;     
-//     if(obstacleSpeed >= 550){
-//       obstacleSpeed = 1;
-//       firstPosition1 = randomObstacle();
-//       firstPosition2 = randomObstacle() + 100;
-//       crushX1 = firstPosition1;
-//       crushX2 = firstPosition2;
-//       console.log(crushX1, crushX2)
-//     } 
-//   }   
 
 
 
@@ -271,7 +245,7 @@ function reaction (){
 
 
 
-//tree solution
+//tree solution?
 // var foo = (function () {
 //   function bar() {
 //     // perform task 3
