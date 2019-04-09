@@ -4,4 +4,22 @@
 
 canvas{
     background-color: grey;         
-  }
+}
+
+.container{
+    display: flex; 
+    border: 1px solid red;
+    height: 200px;
+}
+
+.container > div {
+    border: 1px solid red;
+    height: 100px;
+
+}
+
+.time{
+    border: 1px solid red;
+    
+}
+

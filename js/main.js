@@ -1,6 +1,8 @@
 const myCanvas = document.getElementById('myCanvas');
 const ctx = myCanvas.getContext('2d');
 
+
+let timeReaction;
 let x1 = 0;
 let x2 = 0;
 let x3 = 0;
@@ -47,12 +49,12 @@ ctx.stroke();
 // ctx.fillStyle = "green"; // !
 // ctx.fill();
 // ctx.closePath();
-    
+
 
 //trigger drag - maybe tree===============================
 function moveCPU(){
   x1 += 10;
-
+  
   clearCanvas();
   
   ctx.fillStyle = "#FF0000";
@@ -68,20 +70,20 @@ function moveCPU(){
   ctx.moveTo(0,150);
   ctx.lineTo(1400, 150);
   ctx.stroke();
-
-window.requestAnimationFrame(moveCPU);
+  
+  window.requestAnimationFrame(moveCPU);
 }
 
 function movePlayer(){
   x2 += 10.2;
-
+  
   clearCanvas();
   
   ctx.fillStyle = "#FF0000";
   ctx.fillRect(30+x1,50,50,50);
   ctx.fillStyle = "yellow";
   ctx.fillRect(30+x2,200,50,50);
-
+  
   //dash line  
   ctx.beginPath();
   ctx.lineWidth ='5';
@@ -90,10 +92,13 @@ function movePlayer(){
   ctx.moveTo(0,150);
   ctx.lineTo(1400, 150);
   ctx.stroke();
-
-window.requestAnimationFrame(movePlayer);
+  
+  speed.innerText = Math.floor(x2/5);
+  
+  window.requestAnimationFrame(movePlayer);
 }
 
+let speed = document.getElementById('speedId');
 
 
 function shiftUp(){}
@@ -108,10 +113,12 @@ function nitro(){}
 window.addEventListener("keydown", event => {
     if (event.isComposing || event.keyCode === 32) {
       movePlayer();
+      reaction();
+     
     }else if (event.isComposing || event.keyCode === 67) {
       //shiftUp();
-      accelX2();
-      console.log('up');
+     // accelX2();
+     // console.log('up');
     }else if (event.isComposing || event.keyCode === 39) {
       nitro();
     }
@@ -119,6 +126,14 @@ window.addEventListener("keydown", event => {
 
 
 //tree functions TURN TO OBJECT ORIENTED==============================================
+// function Tree (color,draw,interval,xPos,yPos){
+//   this.color = color;
+//   this.draw = draw;
+//   this.interval = interval;
+//   this.xPos = xPos;
+//   this.yPos = yPos;
+// }
+
 function treeRed (){
   setInterval(function red() {  
   ctx.beginPath();
@@ -143,34 +158,29 @@ treeYellow();
 
 function treeGreen (){
   setInterval(function green() {  
-  ctx.beginPath();
-  ctx.arc(740, 40, 30, 0, Math.PI * 2);
-  ctx.fillStyle = "green";
-  ctx.fill();
-  ctx.closePath();  
+    ctx.beginPath();
+    ctx.arc(740, 40, 30, 0, Math.PI * 2);
+    ctx.fillStyle = "green";
+    ctx.fill();
+    ctx.closePath();  
+    startTime = new Date()
   }, 4000);
-  setInterval(moveCPU, 4003);
+  setInterval(moveCPU, 4100);
 }
 treeGreen();
 
 //cars ===============================
 
 //MX-7
-  const img  = new Image();
-  img.src = "img/mx7.png";
+  // const img  = new Image();
+  // img.src = "img/mx7.png";
   
-  img.onload = function () {
-      ctx.drawImage(img,0,10, 200,100);
-  };
+  // img.onload = function () {
+  //     ctx.drawImage(img,0,10, 200,100);
+  // };
 
 // function drawMoveDash(){
-//     ctx.strokeStyle = 'white';
-//     ctx.beginPath();
-//     ctx.setLineDash([30, 30]);
-//     ctx.moveTo(250, -750 + y);
-//     ctx.lineTo(250, 0 + y);
-//     ctx.stroke();
-//     ctx.closePath();
+
 
 //      ctx.strokeStyle = 'white';
 //     ctx.beginPath();
@@ -185,40 +195,6 @@ treeGreen();
 //     }
 //   }
 
-
-
-// let x = 135;
-// let y = 460;
-// let speed = 10;
-// let obstacleSpeed = 1;
-// let firstPosition1 = 15;
-// let firstPosition2 = 255;
-// let crushY = 0;
-// let crushX1 = 0;
-// let crushX2 = 0;
-// let repeatobstacle = 550;
-
-
-//function draw (){
-//     ctx.fillStyle = "grey";
-//     ctx.fillRect(15,0,320,550);
-
-   
-
-//     ctx.beginPath();
-//     ctx.lineWidth ='5';
-//     ctx.strokeStyle = "white";
-//     ctx.moveTo(325, 0);
-//     ctx.lineTo(325, 550);
-//     ctx.stroke();
-
-//     ctx.beginPath();
-//     ctx.lineWidth ='5';
-//     ctx.strokeStyle = "white";
-//     ctx.setLineDash([17]);
-//     ctx.moveTo(175, 0);
-//     ctx.lineTo(175, 550);
-//     ctx.stroke();
     
 //     let img = new Image();
 //     img.src = './images/car.png'
@@ -233,28 +209,8 @@ treeGreen();
 //     startGame();
 //   };
 
-// function moveRight (){
-//     if(x < 280){
-//     x += speed;
-//   }
-//     console.log(x);
-
-//   }
-
-// function moveLeft (){
-//     if(x > 15 ){
-//       x -= speed;
-//     }
-//     console.log(x);
 
 
-//   }
-
-//   function randomObstacle(){
-  
-//     let random = Math.floor(Math.random()*100 +15);
-//     return random; 
-//   }
 
 //   function obstacles(){
       
@@ -272,15 +228,8 @@ treeGreen();
 //     } 
 //   }   
 
-//   function gameOver(){
 
-//   }
 
-// function clear(){
-//     ctx.clearRect(0,0,myCanvas.width, myCanvas.height);
-// } 
-
-//   const game = document.getElementById("start-button");
 
   // game.addEventListener("keydown", event => {
   //   if (event.isComposing || event.keyCode === 37) {
@@ -290,10 +239,54 @@ treeGreen();
   //   }
   // });
 
-//   function startGame() {
-//     clear();
-//     draw();   
-//     obstacles();
-//     window.requestAnimationFrame(startGame);
-// }
-// };
+
+
+//TIME REACTION==================
+//dentro da tree
+let startTime=new Date();
+let endTime=new Date();
+let responseTime;
+
+function reaction (){
+  endTime = new Date();
+  responseTime = (endTime.getTime()-startTime.getTime())/1000;
+  console.log(responseTime)
+
+  let responsePhrase= "";
+	if (responseTime < 0.10)
+		responsePhrase = "Well done!";
+	else if (responseTime >= 0.10 && responseTime < 0.20)
+		responsePhrase = "Nice!";
+	else if (responseTime >= 0.20 && responseTime < 0.30)
+		responsePhrase = "Could be better...";
+	else if (responseTime >= 0.30 && responseTime < 0.60)
+		responsePhrase = "Keep practising!";
+	else if (responseTime >= 0.60 && responseTime < 1)
+		responsePhrase = "Have you been drinking?";
+	else if (responseTime >= 1)
+    responsePhrase="Did you fall asleep?";
+    
+  return document.getElementById('timeId').innerHTML = `reaction time: ${responseTime}seconds`,document.getElementById('responsePhrase').innerHTML = responsePhrase;
+}
+
+
+
+//tree solution
+// var foo = (function () {
+//   function bar() {
+//     // perform task 3
+//   };
+
+//   function innerfoo (a) { 
+//     if (/* some cond */ ) {
+//       // perform task 1
+//       bar();
+//     }
+//     else {
+//       // perform task 2
+//       bar();
+//     }
+//   }
+//   return innerfoo;
+// })();
+
