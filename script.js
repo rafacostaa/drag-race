@@ -18,6 +18,11 @@ let carTwo = new Image();
 
 let speed = document.getElementById('speedId');
 
+
+let requestAnimationFrame = window.requestAnimationFrame;
+let cancelAnimationFrame = window.cancelAnimationFrame;
+let myReq;
+
 function draw() {
   carOne.src = './img/audi.png';
   carTwo.src = './img/taxi.png';
@@ -28,7 +33,7 @@ function draw() {
   ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
   ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
   
-  window.requestAnimationFrame(draw);
+  myReq = requestAnimationFrame(draw);
 }
 
 function moveCPU() {
@@ -46,7 +51,7 @@ function moveCPU() {
   ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
   ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
   
-  window.requestAnimationFrame(moveCPU);
+  myReq = requestAnimationFrame(moveCPU);
 }
 
 function movePlayer() {
@@ -62,10 +67,10 @@ function movePlayer() {
   //cars
   ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
   ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
-  console.log(x2);
+  //console.log(x2);
     
   speed.innerText = `${Math.floor(x2/5)} km/h`;
-  window.requestAnimationFrame(movePlayer);
+  myReq = requestAnimationFrame(movePlayer);
 }
 
 draw();
@@ -89,25 +94,29 @@ window.addEventListener("keydown", event => {
 
 //TIME REACTION=======================================
 //dentro da tree
-let startTime = new Date();
-let endTime = new Date();
-let responseTime;
+let startTime, endTime, responseTime;
 let responsePhrase= "";
 
 function reaction (){
-  endTime = new Date();
-  responseTime = (endTime.getTime() - startTime.getTime())/1000;
-  console.log(responseTime);
+  endTime = Date.now();
+  responseTime = (endTime - startTime)/1000;
+  console.log(typeof responseTime,responseTime);
+  if(!responseTime) {
+    alert ('You lose');
+    cancelAnimationFrame(myReq);
+
+
+  }
   
-	if (responseTime < 0.30)
+	if (responseTime < 0.2)
   responsePhrase = "Well done The Flash!";
-	else if (responseTime >= 0.30 && responseTime < 0.40)
+	else if (responseTime >= 0.20 && responseTime < 0.30)
   responsePhrase = "Good Job!";
-	else if (responseTime >= 0.40 && responseTime < 0.60)
+	else if (responseTime >= 0.30 && responseTime < 0.40)
   responsePhrase = "Could be better...";
-	else if (responseTime >= 0.60 && responseTime < 0.80)
+	else if (responseTime >= 0.40 && responseTime < 0.60)
   responsePhrase = "Keep practising!";
-	else if (responseTime >= 0.80 && responseTime < 1)
+	else if (responseTime >= 0.60 && responseTime < 1)
   responsePhrase = "Have you been drinking?";
 	else if (responseTime >= 1)
   responsePhrase="Did you fall asleep?";
@@ -133,6 +142,9 @@ function startGame() {
   setInterval( function greenLight(){
     lightsStart[2].classList.add("on");
     moveCPU();
+    startTime = Date.now();
+
+
   },3000);
   
   // setInterval( function startLight(){
