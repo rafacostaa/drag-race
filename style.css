@@ -3,7 +3,14 @@
 }
 
 canvas{
-    background-color: grey;         
+    background: url('img/roadTexture.jpg') center left repeat-x;
+    height: 330px;
+    width: 100%;
+    border-right: dashed 10px white;
+    box-sizing: border-box; 
+    margin: 40px 0;
+    border: 2px solid red;
+
 }
 
 .container{
@@ -27,3 +34,5 @@ canvas{
 nav > h3{
     color: whitesmoke;
 }
+
+div{border: 1px solid red;}

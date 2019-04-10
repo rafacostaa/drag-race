@@ -1,23 +1,5 @@
 const canvas = document.getElementById('canvas');
-
-//variavel para indicar que o canvas será de 2 dimensões
 const ctx = canvas.getContext('2d');
-
-// const img  = new Image();
-// img.src = "./road texture.jpg";
-
-// img.onload = function () {
-//     ctx.drawImage(img,0,50, 1400,350);
-// };
-
-
-
-// const carOne  = new Image();
-// carOne.src = "audi.png";
-
-// img.onload = function () {
-//     ctx.drawImage(img,0,50, 100,100);
-// };
 
 let timeReaction;
 let x1 = 0;
@@ -31,22 +13,22 @@ function clearCanvas() {
 
 //objects===============================
 
-ctx.fillStyle = "#FF0000";
-ctx.fillRect(30,50,50,50);
+// ctx.fillStyle = "#FF0000";
+// ctx.fillRect(30,50,50,50);
 
-ctx.fillStyle = "yellow";
-ctx.fillRect(30,200,50,50);
+// ctx.fillStyle = "yellow";
+// ctx.fillRect(30,200,50,50);
 
 // ctx.fillStyle = "magenta";
 // ctx.fillRect(30,250,50,50);
 
-ctx.beginPath();
-ctx.lineWidth ='5';
-ctx.strokeStyle = "white";
-ctx.setLineDash([17]);
-ctx.moveTo(0,150);
-ctx.lineTo(1400, 150);
-ctx.stroke();
+// ctx.beginPath();
+// ctx.lineWidth ='5';
+// ctx.strokeStyle = "white";
+// ctx.setLineDash([17]);
+// ctx.moveTo(0,150);
+// ctx.lineTo(1400, 150);
+// ctx.stroke();
 
 // const img  = new Image();
 // img.src = "./road texture.jpg";
@@ -57,62 +39,100 @@ ctx.stroke();
 
 
 //trigger drag - maybe tree===============================
-function moveCPU(){
-  x1 += 10;
-  
-  clearCanvas();
-  
-  ctx.fillStyle = "#FF0000";
-  ctx.fillRect(30+x1,50,50,50);
-  ctx.fillStyle = "yellow";
-  ctx.fillRect(30+x2,200,50,50);
-  
-  //dash line  
-  ctx.beginPath();
-  ctx.lineWidth ='5';
-  ctx.strokeStyle = "white";
-  ctx.setLineDash([17]);
-  ctx.moveTo(0,150);
-  ctx.lineTo(1400, 150);
-  ctx.stroke();
-  
-  window.requestAnimationFrame(moveCPU);
-}
 
-function movePlayer(){
-  x2 += 10.2;
+// function moveCPU(){
+//   x1 += 10;
   
+//   clearCanvas();
   
-  clearCanvas();
+//   // ctx.fillStyle = "#FF0000";
+//   // ctx.fillRect(30+x1,50,50,50);
+//   // ctx.fillStyle = "yellow";
+//   // ctx.fillRect(30+x2,200,50,50);
   
-  ctx.fillStyle = "#FF0000";
-  ctx.fillRect(30+x1,50,50,50);
-  ctx.fillStyle = "yellow";
-  ctx.fillRect(30+x2,200,50,50);
+//   //dash line  
+//   // ctx.beginPath();
+//   // ctx.lineWidth ='5';
+//   // ctx.strokeStyle = "white";
+//   // ctx.setLineDash([17]);
+//   // ctx.moveTo(0,150);
+//   // ctx.lineTo(1400, 150);
+//   // ctx.stroke();
   
-  //dash line  
-  ctx.beginPath();
-  ctx.lineWidth ='5';
-  ctx.strokeStyle = "white";
-  ctx.setLineDash([17]);
-  ctx.moveTo(0,150);
-  ctx.lineTo(1400, 150);
-  ctx.stroke();
-  
-  speed.innerText = Math.floor(x2/5);
-  
-  window.requestAnimationFrame(movePlayer);
-}
+//   window.requestAnimationFrame(moveCPU);
+// }
 
 let speed = document.getElementById('speedId');
 
+// function movePlayer(){
+//   x2 += 10.2;
+  
+//   // ctx.fillRect(30+x1,50,50,50);
+//   // ctx.fillStyle = "yellow";
+//   // ctx.fillRect(30+x2,200,50,50);
+  
+//   //dash line  
+//   // ctx.beginPath();
+//   // ctx.lineWidth ='5';
+//   // ctx.strokeStyle = "white";
+//   // ctx.setLineDash([17]);
+//   // ctx.moveTo(0,150);
+//   // ctx.lineTo(1400, 150);
+//   // ctx.stroke();
+  
+//   speed.innerText = `${Math.floor(x2/5)} km/h`;
+  
+//   window.requestAnimationFrame(movePlayer);
+// } clearCanvas();
+  
+  
+ 
+//NEW ENGINE==========================================
+let carOne = new Image();
+let carTwo = new Image();
+//let carThree = new Image();
+
+function init() {
+  carOne.src = './img/audi.png';
+  carTwo.src = './img/taxi.png';
+  // carThree.src = '';
+
+  window.requestAnimationFrame(draw);
+}
+
+
+function draw() {
+  x1 += 10;
+  x2 += 10.2;
+
+
+  ctx.clearRect(0, 0, 1400, 400); // clear canvas
+  
+  //cars
+  ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
+  ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
+  //ctx.drawImage(carThree, 100, 100, 150, 100);
+
+  speed.innerText = `${Math.floor(x2/5)} km/h`;
+  console.log(x1,x2);
+  
+  window.requestAnimationFrame(draw);
+}
+init();
+
+//STOP THE SPEED================================================
+// function stop (){
+//   if(x1 === 1400 && x2 <1400) {
+//     x1 === 0 && x2 === 0;
+//     alert ('CPU win!');
+//   } if (x2 === 1400 && x1 < 1400) {
+//     alert ('Player win!');
+//   }
+// };
 
 function shiftUp(){}
 function nitro(){}
 
-// function accelX2(){
-//   return x3 = 10;
-// }
 
 
 //set functions to keyboard keys===============================
@@ -151,7 +171,7 @@ window.addEventListener("keydown", event => {
 //   return 
 // }
 
-// circleRed = new Tree("red",600,40,2000);
+//circleRed = new Tree("red",600,40,2000);
 // console.log(circle)
 
 document.getElementById('start-button').addEventListener("click", startGame);
@@ -192,68 +212,33 @@ function startGame (){
     setInterval(moveCPU, 4100);
   }
   treeGreen();
+ 
 }
-//MX-7
-
-// function drawMoveDash(){
-
-
-//      ctx.strokeStyle = 'white';
-//     ctx.beginPath();
-//     ctx.setLineDash([30, 30]);
-//     ctx.moveTo(250, 30 + y);
-//     ctx.lineTo(250, 750 + y);
-//     ctx.stroke();
-//     ctx.closePath();
-//     y += 5;
-//     if( y === 750){
-//       y = 0;
-//     }
-//   }
-
-
-
-//   window.onload = function() {
-//   document.getElementById("start-button").onclick = function() {
-//     startGame();
-//   };
 
 
 
 
-
-
-  // game.addEventListener("keydown", event => {
-  //   if (event.isComposing || event.keyCode === 37) {
-  //     moveLeft();  
-  //   }else if (event.isComposing || event.keyCode === 39) {
-  //     moveRight();
-  //   }
-  // });
-
-
-
-//TIME REACTION==================
+//TIME REACTION=======================================
 //dentro da tree
-let startTime=new Date();
-let endTime=new Date();
+let startTime = new Date();
+let endTime = new Date();
 let responseTime;
+let responsePhrase= "";
 
 function reaction (){
   endTime = new Date();
-  responseTime = (endTime.getTime()-startTime.getTime())/1000;
-  console.log(responseTime)
+  responseTime = (endTime.getTime() - startTime.getTime())/1000;
+  console.log(responseTime);
 
-  let responsePhrase= "";
-	if (responseTime < 0.10)
-		responsePhrase = "Well done!";
-	else if (responseTime >= 0.10 && responseTime < 0.20)
-		responsePhrase = "Nice!";
-	else if (responseTime >= 0.20 && responseTime < 0.30)
+	if (responseTime < 0.30)
+		responsePhrase = "Well done The Flash!";
+	else if (responseTime >= 0.30 && responseTime < 0.40)
+		responsePhrase = "Good Job!";
+	else if (responseTime >= 0.40 && responseTime < 0.60)
 		responsePhrase = "Could be better...";
-	else if (responseTime >= 0.30 && responseTime < 0.60)
+	else if (responseTime >= 0.60 && responseTime < 0.80)
 		responsePhrase = "Keep practising!";
-	else if (responseTime >= 0.60 && responseTime < 1)
+	else if (responseTime >= 0.80 && responseTime < 1)
 		responsePhrase = "Have you been drinking?";
 	else if (responseTime >= 1)
     responsePhrase="Did you fall asleep?";
@@ -264,7 +249,7 @@ function reaction (){
 
 
 //tree solution?
-// var foo = (function () {
+// let foo = (function () {
 //   function bar() {
 //     // perform task 3
 //   };
@@ -282,3 +267,39 @@ function reaction (){
 //   return innerfoo;
 // })();
 
+// BACKGROUND MOVING
+// let img = new Image();
+// img.src = 'img/roadTexture.jpg';
+
+
+// let backgroundImage = {
+//   img: img,
+//   x: 0,
+//   speed: -2,
+
+//   move: function() {
+//     this.x += this.speed;
+//     this.x %= canvas.width;
+//   },
+
+//   draw: function() {
+//     ctx.drawImage(this.img, this.x, 0);
+//     if (this.speed < 0) {
+//       ctx.drawImage(this.img, this.x + canvas.width, 0);
+//     } else {
+//       ctx.drawImage(this.img, this.x - this.img.width, 0);
+//     }
+//   },
+// };
+
+// function updateCanvas() {
+//   backgroundImage.move();
+
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   backgroundImage.draw();
+
+//   requestAnimationFrame(updateCanvas);
+// }
+
+// // start calling updateCanvas once the image is loaded
+// img.onload = updateCanvas;
