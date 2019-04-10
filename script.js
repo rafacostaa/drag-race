@@ -216,6 +216,23 @@ function startGame() {
 //circleRed = new Tree("red",600,40,2000);
 // console.log(circle)
               
+//MODAL
+/*
+let modal = document.getElementById('modal-container');
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+
+
+function modalWindow() {
+    setTimeout(function(){
+        document.getElementById('modal-container').style.display='block'; 
+    }, 200);
+}
+*/
               
-              
-    
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
