@@ -132,57 +132,67 @@ window.addEventListener("keydown", event => {
 
 
 //tree functions TURN TO OBJECT ORIENTED==============================================
-// function Tree (color,draw,interval,xPos,yPos){
-//   this.color = color;
-//   this.draw = draw;
-//   this.interval = interval;
+// function Tree (color,xPos,yPos,time,){
+//   this.color = color; 
 //   this.xPos = xPos;
 //   this.yPos = yPos;
+//   this.radius = 30;
+//   this.time = time;
+//   this.draw = function(){
+//     ctx.beginPath();
+//     ctx.arc(xPos, yPos,this.radius, 0, Math.PI * 2);
+//     ctx.fillStyle = color;
+//     ctx.fill();
+//     ctx.closePath()
+//   }
+//   this.interval = setInterval(function () {
+//     this.draw;
+//   },time);
+//   return 
 // }
 
-function treeRed (){
-  setInterval(function red() {  
-  ctx.beginPath();
-  ctx.arc(600, 40, 30, 0, Math.PI * 2);
-  ctx.fillStyle = "red";
-  ctx.fill();
-  ctx.closePath()
-  }, 2000);
-}
-treeRed();
+// circleRed = new Tree("red",600,40,2000);
+// console.log(circle)
 
-function treeYellow (){
-  setInterval(function yellow() {  
-  ctx.beginPath();
-  ctx.arc(670, 40, 30, 0, Math.PI * 2);
-  ctx.fillStyle = "yellow";
-  ctx.fill();
-  ctx.closePath();
-  }, 3000);
-}
-treeYellow();
+document.getElementById('start-button').addEventListener("click", startGame);
 
-function treeGreen (){
-  setInterval(function green() {  
+function startGame (){
+  
+  function treeRed (){
+    setInterval(function red() {  
     ctx.beginPath();
-    ctx.arc(740, 40, 30, 0, Math.PI * 2);
-    ctx.fillStyle = "green";
+    ctx.arc(600, 40, 30, 0, Math.PI * 2);
+    ctx.fillStyle = "red";
     ctx.fill();
-    ctx.closePath();  
-    startTime = new Date()
-  }, 4000);
-  setInterval(moveCPU, 4100);
+    ctx.closePath()
+    }, 2000);
+  }
+  treeRed();
+
+  function treeYellow (){
+    setInterval(function yellow() {  
+      ctx.beginPath();
+      ctx.arc(670, 40, 30, 0, Math.PI * 2);
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+      ctx.closePath();
+    }, 3000);
+  }
+  treeYellow();
+
+  function treeGreen (){
+    setInterval(function green() {  
+      ctx.beginPath();
+      ctx.arc(740, 40, 30, 0, Math.PI * 2);
+      ctx.fillStyle = "green";
+      ctx.fill();
+      ctx.closePath();  
+      startTime = new Date()
+    }, 4000);
+    setInterval(moveCPU, 4100);
+  }
+  treeGreen();
 }
-treeGreen();
-
-//cars ===============================
-
-const img  = new Image();
-img.src = "audi.png";
-
-img.onload = function () {
-    ctx.drawImage(img,0,10, 150,150);
-};
 //MX-7
 
 // function drawMoveDash(){
