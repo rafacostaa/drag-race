@@ -36,3 +36,54 @@ nav > h3{
 }
 
 div{border: 1px solid red;}
+
+
+
+.light {
+    height: 85px;
+    width : 85px;
+    border-radius: 50%;
+    opacity : 0.3;
+}
+
+.stop {
+    background: url('img/light1.png');
+    background-size: 81px 81px;
+    border: 2px solid red;
+
+}
+.slow {
+    background: url('img/light2.png');
+    background-size: 81px 81px;
+    border: 2px solid rgb(226, 226, 1);
+}
+.go {
+    background: url('img/light3.png');
+    background-size: 81px 81px;
+    border: 2px solid green;
+}
+
+.on {opacity: 1;}
+
+body {
+    background-color : black;
+    text-align: center;
+    color :white;
+    font-family: Helvetica;
+}
+
+.startLight {
+    background: url('img/startlightbase.png') center no-repeat;
+    height: 140px;
+}
+
+.startLight >div {
+    display: flex;
+    margin-left: 554px;    
+}
+
+.pos {
+    padding: 9px;
+    margin-top: 8px;
+    
+}

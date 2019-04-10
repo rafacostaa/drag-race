@@ -62,91 +62,103 @@ function clearCanvas() {
 //   window.requestAnimationFrame(moveCPU);
 // }
 
-let speed = document.getElementById('speedId');
 
 // function movePlayer(){
-//   x2 += 10.2;
+  //   x2 += 10.2;
   
-//   // ctx.fillRect(30+x1,50,50,50);
-//   // ctx.fillStyle = "yellow";
-//   // ctx.fillRect(30+x2,200,50,50);
+  //   // ctx.fillRect(30+x1,50,50,50);
+  //   // ctx.fillStyle = "yellow";
+  //   // ctx.fillRect(30+x2,200,50,50);
   
-//   //dash line  
-//   // ctx.beginPath();
-//   // ctx.lineWidth ='5';
-//   // ctx.strokeStyle = "white";
-//   // ctx.setLineDash([17]);
-//   // ctx.moveTo(0,150);
-//   // ctx.lineTo(1400, 150);
-//   // ctx.stroke();
+  //   //dash line  
+  //   // ctx.beginPath();
+  //   // ctx.lineWidth ='5';
+  //   // ctx.strokeStyle = "white";
+  //   // ctx.setLineDash([17]);
+  //   // ctx.moveTo(0,150);
+  //   // ctx.lineTo(1400, 150);
+  //   // ctx.stroke();
   
-//   speed.innerText = `${Math.floor(x2/5)} km/h`;
+  //   speed.innerText = `${Math.floor(x2/5)} km/h`;
   
-//   window.requestAnimationFrame(movePlayer);
-// } clearCanvas();
+  //   window.requestAnimationFrame(movePlayer);
+  // } clearCanvas();
   
   
- 
-//NEW ENGINE==========================================
-let carOne = new Image();
-let carTwo = new Image();
-//let carThree = new Image();
-
-function init() {
-  carOne.src = './img/audi.png';
-  carTwo.src = './img/taxi.png';
-  // carThree.src = '';
-
-  window.requestAnimationFrame(draw);
-}
-
-
-function draw() {
-  x1 += 10;
-  x2 += 10.2;
-
-
-  ctx.clearRect(0, 0, 1400, 400); // clear canvas
   
-  //cars
-  ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
-  ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
-  //ctx.drawImage(carThree, 100, 100, 150, 100);
-
-  speed.innerText = `${Math.floor(x2/5)} km/h`;
-  console.log(x1,x2);
+  //NEW ENGINE==========================================
+  let carOne = new Image();
+  let carTwo = new Image();
+  //let carThree = new Image();
   
-  window.requestAnimationFrame(draw);
-}
-init();
+  let speed = document.getElementById('speedId');
+  
+  function draw() {
+    carOne.src = './img/audi.png';
+    carTwo.src = './img/taxi.png';
+    
+    ctx.clearRect(0, 0, 1400, 400); // clear canvas
+    
+    //cars
+    ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
+    ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
+    
+    window.requestAnimationFrame(draw);
+  }
+  
+  function moveCPU() {
+    if(x1 === 1400 && x2 <1400) {
+      alert ('CPU win!');
+    }
+    
+    carOne.src = './img/audi.png';
+    carTwo.src = './img/taxi.png';
+    
+    ctx.clearRect(0, 0, 1400, 400); // clear canvas
+    x1 += 10;
+    
+    //cars
+    ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
+    ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
+    
+   window.requestAnimationFrame(moveCPU);
+  }
+  
+  function movePlayer() {
+    if (x2 === 1400 && x1 < 1400) {
+      alert ('Player win!');
+    }
+    carOne.src = './img/audi.png';
+    carTwo.src = './img/taxi.png';
+        
+    ctx.clearRect(0, 0, 1400, 400); // clear canvas
+    x2 += 10;
+    
+    //cars
+    ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
+    ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
+    console.log(x2);
+      
+    speed.innerText = `${Math.floor(x2/5)} km/h`;
+    window.requestAnimationFrame(movePlayer);
+  }
+  
+  draw();
+  
 
-//STOP THE SPEED================================================
-// function stop (){
-//   if(x1 === 1400 && x2 <1400) {
-//     x1 === 0 && x2 === 0;
-//     alert ('CPU win!');
-//   } if (x2 === 1400 && x1 < 1400) {
-//     alert ('Player win!');
-//   }
-// };
 
-function shiftUp(){}
 function nitro(){}
 
 
 
 //set functions to keyboard keys===============================
 window.addEventListener("keydown", event => {
-    if (event.isComposing || event.keyCode === 32) {
+    if (event.isComposing || event.keyCode === 32) { //key space
       movePlayer();
       reaction();
      
-    }else if (event.isComposing || event.keyCode === 67) {
-      //shiftUp();
-     // accelX2();
-     // console.log('up');
-    }else if (event.isComposing || event.keyCode === 39) {
-      nitro();
+    }else if (event.isComposing || event.keyCode === 78) { //key N
+     nitro();
     }
 }, false);
 
@@ -176,44 +188,44 @@ window.addEventListener("keydown", event => {
 
 document.getElementById('start-button').addEventListener("click", startGame);
 
-function startGame (){
+// function startGame (){
   
-  function treeRed (){
-    setInterval(function red() {  
-    ctx.beginPath();
-    ctx.arc(600, 40, 30, 0, Math.PI * 2);
-    ctx.fillStyle = "red";
-    ctx.fill();
-    ctx.closePath()
-    }, 2000);
-  }
-  treeRed();
+  // function treeRed (){
+  //   setInterval(function red() {  
+  //   ctx.beginPath();
+  //   ctx.arc(600, 40, 30, 0, Math.PI * 2);
+  //   ctx.fillStyle = "red";
+  //   ctx.fill();
+  //   ctx.closePath()
+  //   }, 2000);
+  // }
+  // treeRed();
 
-  function treeYellow (){
-    setInterval(function yellow() {  
-      ctx.beginPath();
-      ctx.arc(670, 40, 30, 0, Math.PI * 2);
-      ctx.fillStyle = "yellow";
-      ctx.fill();
-      ctx.closePath();
-    }, 3000);
-  }
-  treeYellow();
+  // function treeYellow (){
+  //   setInterval(function yellow() {  
+  //     ctx.beginPath();
+  //     ctx.arc(670, 40, 30, 0, Math.PI * 2);
+  //     ctx.fillStyle = "yellow";
+  //     ctx.fill();
+  //     ctx.closePath();
+  //   }, 3000);
+  // }
+  // treeYellow();
 
-  function treeGreen (){
-    setInterval(function green() {  
-      ctx.beginPath();
-      ctx.arc(740, 40, 30, 0, Math.PI * 2);
-      ctx.fillStyle = "green";
-      ctx.fill();
-      ctx.closePath();  
-      startTime = new Date()
-    }, 4000);
-    setInterval(moveCPU, 4100);
-  }
-  treeGreen();
+  // function treeGreen (){
+  //   setInterval(function green() {  
+  //     ctx.beginPath();
+  //     ctx.arc(740, 40, 30, 0, Math.PI * 2);
+  //     ctx.fillStyle = "green";
+  //     ctx.fill();
+  //     ctx.closePath();  
+  //     startTime = new Date()
+  //   }, 4000);
+  //   setInterval(moveCPU, 4100);
+  // }
+  // treeGreen();
  
-}
+// }
 
 
 
@@ -247,27 +259,8 @@ function reaction (){
 }
 
 
+// BACKGROUND MOVING========================================================
 
-//tree solution?
-// let foo = (function () {
-//   function bar() {
-//     // perform task 3
-//   };
-
-//   function innerfoo (a) { 
-//     if (/* some cond */ ) {
-//       // perform task 1
-//       bar();
-//     }
-//     else {
-//       // perform task 2
-//       bar();
-//     }
-//   }
-//   return innerfoo;
-// })();
-
-// BACKGROUND MOVING
 // let img = new Image();
 // img.src = 'img/roadTexture.jpg';
 
@@ -303,3 +296,31 @@ function reaction (){
 
 // // start calling updateCanvas once the image is loaded
 // img.onload = updateCanvas;
+
+
+
+//LIGHT==========================================================================================
+let lightsStart = document.getElementsByClassName('light');
+let startOff = document.getElementsByClassName('startLight')
+
+function startGame() {
+  setInterval( function redLight(){
+    lightsStart[0].classList.add("on");
+  },1000);
+
+  setInterval( function yellowLight(){
+    lightsStart[1].classList.add("on");
+  },2000);
+
+  setInterval( function greenLight(){
+    lightsStart[2].classList.add("on");
+    moveCPU();
+  },3000);
+
+  // setInterval( function startLight(){
+  //   startOff.style.display = "none";
+  // },5000);
+
+}
+
+

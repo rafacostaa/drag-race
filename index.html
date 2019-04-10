@@ -12,9 +12,26 @@
     
     <nav class="navbar navbar-dark bg-dark">
         <h3>Street Outlaws</h3>
+        <!-- VER EFEITO -->
         <button class="btn btn-secondary btn-lg" id="start-button">StartGame</button>
     </nav>
+
+    <div class="startLight">
+        <div class="show-hidden">
+            <div class="pos">
+            <div onclick="switchLight(0)" class="light pos stop" ></div>
+            </div>
+            <div class="pos">
+            <div onclick="switchLight(1)" class="light pos slow" ></div>
+            </div>
+            <div class="pos">
+            <div onclick="switchLight(2)" class="light pos go" ></div>
+            </div>
+        </div>                        
+    </div>
     
+
+
     <canvas id="canvas" width="1400" height="400"></canvas>
     <!-- <div class="container">
         <div class="row">
@@ -23,6 +40,7 @@
                 <div id="speedId">0</div>
                 <div id="timeId"></div>
                 <div id="responsePhrase" class="" role="alert"></div>
+                
             <!-- </div>
         </div>
     </div> -->
