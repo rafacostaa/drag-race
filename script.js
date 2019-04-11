@@ -165,24 +165,30 @@ function movePlayer() {
   let startOff = document.getElementsByClassName('startLight')
   
   
-  // let time = Math.random()*1.5;
-  // console.log(time);
-  
   function startGame() {
+    let randomSort = Math.random()*1000;
+    let randomYellow = 3000 + randomSort;
+    let randomGreen = randomYellow + randomSort;
+  
+    console.log(randomSort);
+    console.log(randomYellow);
+    console.log(randomGreen);
+
     setInterval( function redLight(){
       lightsStart[0].classList.add('on');
-    },1000);
+    },3000);
   
-  setInterval( function yellowLight(){
+    setInterval( function yellowLight(){
     lightsStart[1].classList.add('on');
-  },2000);
+    },randomYellow);
   
-  setInterval( function greenLight(){
+    setInterval( function greenLight(){
     lightsStart[2].classList.add('on');
 
     moveCPU();
     startTime = Date.now();
-  },3000); 
+
+    },randomGreen); 
   }
   
   
@@ -256,21 +262,11 @@ $('#myModal').on('shown.bs.modal', function () {
 
 
 
+// AUDIO==================================================
 
 function audioStart(){
   let audioOne= document.getElementById("audio-one");
-  //audioOne.currentTime = 0;
-  // audioOne.volume = 100;
   audioOne.play();
-  // console.log(audioOne.currentTime);
-  // setInterval(function(){
-  //   // In the if condition I set it to greater than 45. 
-  //   // So after 5 seconds, the audio will be stopped automatically.
-  //   if(audioOne.currentTime>45){
-      
-  //     audioOne.pause();
-  //   }
-  // },1000);
 }
 
 function audioStartTwo(){
