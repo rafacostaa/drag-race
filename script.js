@@ -33,8 +33,8 @@ function draw() {
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
   
   //cars
-  ctx.drawImage(carOne, -15, 30, 180, 180);
-  ctx.drawImage(carTwo, -15, 190, 180, 180);
+  ctx.drawImage(carOne, -15, 30, 180, 170);
+  ctx.drawImage(carTwo, -15, 190, 180, 170);
   // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
   
   myReq = requestAnimationFrame(draw);
@@ -50,8 +50,8 @@ function moveCPU() {
   x1 += 10;
   
   //cars
-  ctx.drawImage(carOne, -15 + x1, 30, 180, 180);
-  ctx.drawImage(carTwo, -15 + x2, 190, 180, 180);
+  ctx.drawImage(carOne, -15 + x1, 30, 180, 170);
+  ctx.drawImage(carTwo, -15 + x2, 190, 180, 170);
   // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
   
   
@@ -71,8 +71,8 @@ function movePlayer() {
   x2 += 20;
   
   //cars
-  ctx.drawImage(carOne, -15 + x1, 30, 180, 180);
-  ctx.drawImage(carTwo, -15 + x2, 190, 180, 180);
+  ctx.drawImage(carOne, -15 + x1, 30, 180, 170);
+  ctx.drawImage(carTwo, -15 + x2, 190, 180, 170);
   // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
   
   //console.log(x2);
