@@ -259,12 +259,12 @@ function settime(){
   // audio.volume = 100;
   audio.play();
   console.log(audio.currentTime);
-  setInterval(function(){
-    //In the if condition I set it to greater than 45. 
-    //So after 5 seconds, the audio will be stopped automatically.
-    if(audio.currentTime>45){
+  // setInterval(function(){
+  //   //In the if condition I set it to greater than 45. 
+  //   //So after 5 seconds, the audio will be stopped automatically.
+  //   // if(audio.currentTime>45){
       
-      audio.pause();
-    }
-  },1000);
+  //   //   audio.pause();
+  //   // }
+  // },1000);
 }
