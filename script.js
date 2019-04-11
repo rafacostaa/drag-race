@@ -90,28 +90,29 @@ draw();
 
 //set functions to keyboard keys===============================
 window.addEventListener("keydown", event => {
-  if (event.isComposing || event.keyCode === 32) { //key space
+  if (event.keyCode === 32) { //key space
     movePlayer();
     reaction();
+    audioStartCarRun();
+    removeKeyDown();
     console.log(event.keyCode);
-  }else if (event.isComposing || event.keyCode === 78) { //key N
+
+  }else if (event.keyCode === 78) { //key N
     nitro();
   }
 }, false);
 
-
-// let keysdown = {};
-
-// element.addEventListener('keydown', function(evt) {
-//   if(!(evt.key in keysdown)) {
-//     keysdown[evt.key] = true;
-//     // key first pressed
-//   }
-// });
-
-// element.addEventListener('keyup', function(evt) {
-//   delete keysdown[evt.key];
-// });
+function removeKeyDown (){
+window.removeEventListener('keydown', event => {
+  if (event.keyCode === 32) { //key space
+    movePlayer();
+    reaction();
+    audioStartCarRun();
+  }else if (event.keyCode === 78) { //key N
+    nitro();
+  }
+}, false);
+}
 
 
 //TIME REACTION=======================================
@@ -151,20 +152,22 @@ let lightsStart = document.getElementsByClassName('light');
 let startOff = document.getElementsByClassName('startLight')
 
 function startGame() {
+  
+  audioStartCarPre();
 
   setTimeout( function redLight(){
-    //audioStart()
+    audioStart()
     lightsStart[0].classList.add('on');
   },2000);
 
   setTimeout( function yellowLight(){
-    //audioStart()
+    audioStart()
   lightsStart[1].classList.add('on');
   },4000);
 
   setTimeout( function greenLight(){
   lightsStart[2].classList.add('on');
-
+  audioStartTwo();
   moveCPU();
   startTime = Date.now();
 
