@@ -12,8 +12,35 @@ canvas{
 }
 
 
+nav{
+    background: url('./img/tijolo.png');
+
+}
+
+/* .wallcarbon{
+    background: url('./img/wallcarbon.png') center;
+    background-position: 50% 50%;
+    border: 1px solid green;
+} */
+
+
+
 
 div{border: 1px solid red;}
+
+.text-box {
+    font-family: 'Racing Sans One', cursive;
+    color: whitesmoke;
+    letter-spacing:1.5px;
+    text-align: center;
+    margin-top: 40px;
+    list-style-type: none;
+}
+
+.text-box-margin{
+    margin-top: 30px;
+
+}
 
 
 /* STARTLIGHT =========================================*/
@@ -66,3 +93,66 @@ body {
     
 }
 
+
+/* FONT LOGO============================== */
+
+
+  
+  .container-name {
+    display: flex;
+    align-content: flex-start;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .neon {
+    font-family: 'Racing Sans One', cursive;;
+    color: #FB4264;
+    font-size: 35px;
+    line-height: 35px;
+    text-shadow: 0 0 8px #F40A35;
+    
+    
+}
+
+.flux {
+    font-family: 'Racing Sans One', cursive;;
+    color: #426DFB;
+    font-size: 50px;
+    line-height: 50px;
+    text-shadow: 0 0 5px #2356FF;
+    margin-top: 10px;
+  }
+  
+  /* .neon {
+    animation: neon 10s ease infinite;
+  } */
+  
+  @keyframes neon {
+    0%,
+    100% {
+      text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;
+      color: #FED128;
+    }
+    50% {
+      text-shadow: 0 0 .5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 5vw #800E0B, 0 0 5vw #800E0B, 0 0 .2vw #800E0B, .5vw .5vw .1vw #40340A;
+      color: #806914;
+    }
+  }
+  
+  .flux {
+    animation: flux 5s linear infinite;
+  }
+  
+  @keyframes flux {
+    0%,
+    100% {
+      text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
+      color: #28D7FE;
+    }
+    50% {
+      text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
+      color: #146C80;
+    }
+  }
+  

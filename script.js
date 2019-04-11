@@ -138,21 +138,15 @@ let lightsStart = document.getElementsByClassName('light');
 let startOff = document.getElementsByClassName('startLight')
 
 function startGame() {
-  let randomSort = Math.random()*1000;
-  let randomYellow = 3000 + randomSort;
-  let randomGreen = randomYellow + randomSort;
-
-  // console.log(randomSort);
-  // console.log(randomYellow);
-  // console.log(randomGreen);
+ 
 
   setInterval( function redLight(){
     lightsStart[0].classList.add('on');
-  },3000);
+  },2000);
 
   setInterval( function yellowLight(){
   lightsStart[1].classList.add('on');
-  },randomYellow);
+  },4000);
 
   setInterval( function greenLight(){
   lightsStart[2].classList.add('on');
@@ -160,7 +154,7 @@ function startGame() {
   moveCPU();
   startTime = Date.now();
 
-  },randomGreen); 
+  },6000); 
 }
 
             
