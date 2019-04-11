@@ -253,18 +253,37 @@ $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 })
 
-function settime(){
-  var audio= document.getElementById("myaudio");
-  audio.currentTime = 0;
-  // audio.volume = 100;
-  audio.play();
-  console.log(audio.currentTime);
+
+
+
+
+function audioStart(){
+  let audioOne= document.getElementById("audio-one");
+  //audioOne.currentTime = 0;
+  // audioOne.volume = 100;
+  audioOne.play();
+  // console.log(audioOne.currentTime);
   // setInterval(function(){
-  //   //In the if condition I set it to greater than 45. 
-  //   //So after 5 seconds, the audio will be stopped automatically.
-  //   // if(audio.currentTime>45){
+  //   // In the if condition I set it to greater than 45. 
+  //   // So after 5 seconds, the audio will be stopped automatically.
+  //   if(audioOne.currentTime>45){
       
-  //   //   audio.pause();
-  //   // }
+  //     audioOne.pause();
+  //   }
   // },1000);
+}
+
+function audioStartTwo(){
+  let audioTwo= document.getElementById("audio-two");
+  audioTwo.play();
+}
+
+function audioStartCarPre(){
+  let audioThree= document.getElementById("audio-three");
+  audioThree.play();
+}
+
+function audioStartCarRun(){
+  let audioFour= document.getElementById("audio-four");
+  audioFour.play();
 }
