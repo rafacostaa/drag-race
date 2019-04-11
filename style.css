@@ -29,7 +29,7 @@ nav{
   letter-spacing:1.5px;
 }
 
-div{border: 1px solid red;}
+/* div{border: 1px solid red;} */
 
 .text-boxes{
     font-family: 'Racing Sans One', cursive;
@@ -41,13 +41,14 @@ div{border: 1px solid red;}
 
 .box-one {
   font-size: 30px;
-margin-top: 25px;
+  margin-top: 25px;
 }
 
 .box-two{
   font-size: 20px;
   margin-top: 20px;
 }
+
 
 
 
@@ -80,9 +81,8 @@ margin-top: 25px;
 .on {opacity: 1;}
 
 body {
-    background-color : black;
-    text-align: center;
-    font-family: Helvetica;
+  background: rgb(0, 0, 0);
+  text-align: center;
 }
 
 .startLight {
@@ -93,6 +93,7 @@ body {
 .startLight >div {
     display: flex;
     justify-content: center;
+    margin-top: 20px; 
 }
 
 .pos {
@@ -101,6 +102,11 @@ body {
     
 }
 
+
+.wallcarbon {
+  background: url ('img/Carbon.jpg');
+  height: 50px;
+}
 
 /* FONT LOGO============================== */
 
