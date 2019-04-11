@@ -57,7 +57,7 @@ body {
 
 .startLight >div {
     display: flex;
-    margin-left: 554px;    
+    justify-content: center;
 }
 
 .pos {

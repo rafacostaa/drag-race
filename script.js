@@ -25,16 +25,16 @@ let cancelAnimationFrame = window.cancelAnimationFrame;
 let myReq;
 
 function draw() {
-  carOne.src = './img/audi.png';
-  carTwo.src = './img/taxi.png';
+  carOne.src = './img/porsche.png';
+  carTwo.src = './img/subaru.png';
   // carThree.src = './img/police.png';
   
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
   
   //cars
-  ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
-  ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
+  ctx.drawImage(carOne, 0 + x1, 10, 140, 150);
+  ctx.drawImage(carTwo, 0 + x2, 210, 140, 150);
   // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
   
   myReq = requestAnimationFrame(draw);
@@ -45,8 +45,8 @@ function moveCPU() {
     alert ('CPU win!');
   }
   
-  carOne.src = './img/audi.png';
-  carTwo.src = './img/taxi.png';
+  carOne.src = './img/porsche.png';
+  carTwo.src = './img/subaru.png';
   // carThree.src = './img/police.png';
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
@@ -65,8 +65,8 @@ function movePlayer() {
   if (x2 === 1400 && x1 < 1400) {
     alert ('Player win!');
   }
-  carOne.src = './img/audi.png';
-  carTwo.src = './img/taxi.png';
+  carOne.src = './img/porsche.png';
+  carTwo.src = './img/subaru.png';
   // carThree.src = './img/police.png';
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
@@ -92,8 +92,8 @@ function movePlayer() {
 //     // if (x2 === 1400 && x1 < 1400) {
 //     //   alert ('Player win!');
 //     // }
-//     carOne.src = './img/audi.png';
-//     carTwo.src = './img/taxi.png';
+//     carOne.src = './img/porsche.png';
+//     carTwo.src = './img/subaru.png';
 //     carThree.src = './img/police.png';
 
 //     ctx.clearRect(0, 0, 1400, 400); // clear canvas
