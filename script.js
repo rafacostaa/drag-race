@@ -82,6 +82,115 @@ function movePlayer() {
   speed.innerText = `${Math.floor(x2/5)} km/h`;
   myReq = requestAnimationFrame(movePlayer);
 }
+     
+draw();
+
+// NITRO=============================================
+// function nitro(){}
+
+//set functions to keyboard keys===============================
+window.addEventListener("keydown", event => {
+  if (event.isComposing || event.keyCode === 32) { //key space
+    movePlayer();
+    reaction();
+    
+  }else if (event.isComposing || event.keyCode === 78) { //key N
+    nitro();
+  }
+}, false);
+  
+  
+//TIME REACTION=======================================
+//dentro da tree
+let startTime, endTime, responseTime;
+let responsePhrase= "";
+
+function reaction (){
+  endTime = Date.now();
+  responseTime = (endTime - startTime)/1000;
+  //console.log(typeof responseTime,responseTime);
+  if(!responseTime) {
+    alert ('You lose');
+    cancelAnimationFrame(myReq);   
+  }
+  
+  if (responseTime < 0.2)
+  responsePhrase = "Well done The Flash!";
+  else if (responseTime >= 0.20 && responseTime < 0.30)
+  responsePhrase = "Good Job!";
+  else if (responseTime >= 0.30 && responseTime < 0.40)
+  responsePhrase = "Could be better...";
+  else if (responseTime >= 0.40 && responseTime < 0.60)
+  responsePhrase = "Keep practising!";
+  else if (responseTime >= 0.60 && responseTime < 1)
+  responsePhrase = "Have you been drinking?";
+  else if (responseTime >= 1)
+  responsePhrase="Did you fall asleep?";
+  
+  return document.getElementById('timeId').innerHTML = `reaction time: ${responseTime}seconds`,
+  document.getElementById('responsePhrase').innerHTML = responsePhrase;
+}
+
+
+//LIGHT==========================================================================================
+document.getElementById('start-button').addEventListener("click", startGame);
+let lightsStart = document.getElementsByClassName('light');
+let startOff = document.getElementsByClassName('startLight')
+
+function startGame() {
+  let randomSort = Math.random()*1000;
+  let randomYellow = 3000 + randomSort;
+  let randomGreen = randomYellow + randomSort;
+
+  // console.log(randomSort);
+  // console.log(randomYellow);
+  // console.log(randomGreen);
+
+  setInterval( function redLight(){
+    lightsStart[0].classList.add('on');
+  },3000);
+
+  setInterval( function yellowLight(){
+  lightsStart[1].classList.add('on');
+  },randomYellow);
+
+  setInterval( function greenLight(){
+  lightsStart[2].classList.add('on');
+
+  moveCPU();
+  startTime = Date.now();
+
+  },randomGreen); 
+}
+
+            
+//MODAL==========================================              
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+
+// AUDIO==================================================
+
+function audioStart(){
+  let audioOne= document.getElementById("audio-one");
+  audioOne.play();
+}
+
+function audioStartTwo(){
+  let audioTwo= document.getElementById("audio-two");
+  audioTwo.play();
+}
+
+function audioStartCarPre(){
+  let audioThree= document.getElementById("audio-three");
+  audioThree.play();
+}
+
+function audioStartCarRun(){
+  let audioFour= document.getElementById("audio-four");
+  audioFour.play();
+}
+
 
 // let random = Math.floor(Math.random()*100);
 // console.log(random);
@@ -109,177 +218,3 @@ function movePlayer() {
 //     }
 //   } else
 //   return
-// }
-        
-  draw();
-  
-  function nitro(){}
-  
-  //set functions to keyboard keys===============================
-  window.addEventListener("keydown", event => {
-    if (event.isComposing || event.keyCode === 32) { //key space
-      movePlayer();
-      reaction();
-      
-    }else if (event.isComposing || event.keyCode === 78) { //key N
-      nitro();
-    }
-  }, false);
-  
-  
-  //TIME REACTION=======================================
-  //dentro da tree
-  let startTime, endTime, responseTime;
-  let responsePhrase= "";
-  
-  function reaction (){
-    endTime = Date.now();
-    responseTime = (endTime - startTime)/1000;
-    //console.log(typeof responseTime,responseTime);
-    if(!responseTime) {
-      alert ('You lose');
-      cancelAnimationFrame(myReq);   
-    }
-    
-    if (responseTime < 0.2)
-    responsePhrase = "Well done The Flash!";
-    else if (responseTime >= 0.20 && responseTime < 0.30)
-    responsePhrase = "Good Job!";
-    else if (responseTime >= 0.30 && responseTime < 0.40)
-    responsePhrase = "Could be better...";
-    else if (responseTime >= 0.40 && responseTime < 0.60)
-    responsePhrase = "Keep practising!";
-    else if (responseTime >= 0.60 && responseTime < 1)
-    responsePhrase = "Have you been drinking?";
-    else if (responseTime >= 1)
-    responsePhrase="Did you fall asleep?";
-    
-    return document.getElementById('timeId').innerHTML = `reaction time: ${responseTime}seconds`,
-    document.getElementById('responsePhrase').innerHTML = responsePhrase;
-  }
-  
-  
-  //LIGHT==========================================================================================
-  document.getElementById('start-button').addEventListener("click", startGame);
-  let lightsStart = document.getElementsByClassName('light');
-  let startOff = document.getElementsByClassName('startLight')
-  
-  
-  function startGame() {
-    let randomSort = Math.random()*1000;
-    let randomYellow = 3000 + randomSort;
-    let randomGreen = randomYellow + randomSort;
-  
-    console.log(randomSort);
-    console.log(randomYellow);
-    console.log(randomGreen);
-
-    setInterval( function redLight(){
-      lightsStart[0].classList.add('on');
-    },3000);
-  
-    setInterval( function yellowLight(){
-    lightsStart[1].classList.add('on');
-    },randomYellow);
-  
-    setInterval( function greenLight(){
-    lightsStart[2].classList.add('on');
-
-    moveCPU();
-    startTime = Date.now();
-
-    },randomGreen); 
-  }
-  
-  
-// BACKGROUND MOVING========================================================
-  
-// let img = new Image();
-// img.src = 'img/roadTexture.jpg';
-
-
-// let backgroundImage = {
-//   img: img,
-//   x: 0,
-//   speed: -2,
-
-//   move: function() {
-//     this.x += this.speed;
-//     this.x %= canvas.width;
-//   },
-
-//   draw: function() {
-//     ctx.drawImage(this.img, this.x, 0);
-//     if (this.speed < 0) {
-//       ctx.drawImage(this.img, this.x + canvas.width, 0);
-//     } else {
-//       ctx.drawImage(this.img, this.x - this.img.width, 0);
-//     }
-//   },
-// };
-
-// function updateCanvas() {
-//   backgroundImage.move();
-
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   backgroundImage.draw();
-
-//   requestAnimationFrame(updateCanvas);
-// }
-
-// // start calling updateCanvas once the image is loaded
-// img.onload = updateCanvas;
-
-
-//tree functions TURN TO OBJECT ORIENTED==============================================
-// function Tree (color,xPos,yPos,time,){
-//   this.color = color; 
-//   this.xPos = xPos;
-//   this.yPos = yPos;
-//   this.radius = 30;
-//   this.time = time;
-//   this.draw = function(){
-//     ctx.beginPath();
-//     ctx.arc(xPos, yPos,this.radius, 0, Math.PI * 2);
-//     ctx.fillStyle = color;
-//     ctx.fill();
-//     ctx.closePath()
-//   }
-//   this.interval = setInterval(function () {
-//     this.draw;
-//   },time);
-//   return 
-// }
-
-//circleRed = new Tree("red",600,40,2000);
-// console.log(circle)
-              
-//MODAL==========================================              
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-
-
-
-
-// AUDIO==================================================
-
-function audioStart(){
-  let audioOne= document.getElementById("audio-one");
-  audioOne.play();
-}
-
-function audioStartTwo(){
-  let audioTwo= document.getElementById("audio-two");
-  audioTwo.play();
-}
-
-function audioStartCarPre(){
-  let audioThree= document.getElementById("audio-three");
-  audioThree.play();
-}
-
-function audioStartCarRun(){
-  let audioFour= document.getElementById("audio-four");
-  audioFour.play();
-}
