@@ -93,13 +93,27 @@ window.addEventListener("keydown", event => {
   if (event.isComposing || event.keyCode === 32) { //key space
     movePlayer();
     reaction();
-    
+    console.log(event.keyCode);
   }else if (event.isComposing || event.keyCode === 78) { //key N
     nitro();
   }
 }, false);
-  
-  
+
+
+// let keysdown = {};
+
+// element.addEventListener('keydown', function(evt) {
+//   if(!(evt.key in keysdown)) {
+//     keysdown[evt.key] = true;
+//     // key first pressed
+//   }
+// });
+
+// element.addEventListener('keyup', function(evt) {
+//   delete keysdown[evt.key];
+// });
+
+
 //TIME REACTION=======================================
 //dentro da tree
 let startTime, endTime, responseTime;
@@ -133,22 +147,22 @@ function reaction (){
 
 
 //LIGHT==========================================================================================
-document.getElementById('start-button').addEventListener("click", startGame);
 let lightsStart = document.getElementsByClassName('light');
 let startOff = document.getElementsByClassName('startLight')
 
 function startGame() {
- 
 
-  setInterval( function redLight(){
+  setTimeout( function redLight(){
+    //audioStart()
     lightsStart[0].classList.add('on');
   },2000);
 
-  setInterval( function yellowLight(){
+  setTimeout( function yellowLight(){
+    //audioStart()
   lightsStart[1].classList.add('on');
   },4000);
 
-  setInterval( function greenLight(){
+  setTimeout( function greenLight(){
   lightsStart[2].classList.add('on');
 
   moveCPU();
