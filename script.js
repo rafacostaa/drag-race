@@ -14,6 +14,7 @@ function clearCanvas() {
 //ENGINE==========================================
 let carOne = new Image();
 let carTwo = new Image();
+let carThree = new Image();
 //let carThree = new Image();
 
 let speed = document.getElementById('speedId');
@@ -26,12 +27,15 @@ let myReq;
 function draw() {
   carOne.src = './img/audi.png';
   carTwo.src = './img/taxi.png';
+  // carThree.src = './img/police.png';
+  
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
   
   //cars
   ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
   ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
+  // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
   
   myReq = requestAnimationFrame(draw);
 }
@@ -43,6 +47,7 @@ function moveCPU() {
   
   carOne.src = './img/audi.png';
   carTwo.src = './img/taxi.png';
+  // carThree.src = './img/police.png';
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
   x1 += 10;
@@ -50,6 +55,8 @@ function moveCPU() {
   //cars
   ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
   ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
+  // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
+  
   
   myReq = requestAnimationFrame(moveCPU);
 }
@@ -60,101 +67,126 @@ function movePlayer() {
   }
   carOne.src = './img/audi.png';
   carTwo.src = './img/taxi.png';
-      
+  // carThree.src = './img/police.png';
+  
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
   x2 += 10;
   
   //cars
   ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
   ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
+ // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
+
   //console.log(x2);
     
   speed.innerText = `${Math.floor(x2/5)} km/h`;
   myReq = requestAnimationFrame(movePlayer);
 }
 
-draw();
+// let random = Math.floor(Math.random()*100);
+// console.log(random);
 
+// function randomPolice (){
+//   if(random < 50) {
+//     function police() {
+//     // if (x2 === 1400 && x1 < 1400) {
+//     //   alert ('Player win!');
+//     // }
+//     carOne.src = './img/audi.png';
+//     carTwo.src = './img/taxi.png';
+//     carThree.src = './img/police.png';
 
+//     ctx.clearRect(0, 0, 1400, 400); // clear canvas
+//     //x3 += 10;
 
-function nitro(){}
+//     //cars
+//     ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
+//     ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
+//     ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
+//     //console.log(x2);
 
-
-//set functions to keyboard keys===============================
-window.addEventListener("keydown", event => {
-  if (event.isComposing || event.keyCode === 32) { //key space
-    movePlayer();
-    reaction();
+//     myReq = requestAnimationFrame(police);
+//     }
+//   } else
+//   return
+// }
+        
+  draw();
+  
+  function nitro(){}
+  
+  //set functions to keyboard keys===============================
+  window.addEventListener("keydown", event => {
+    if (event.isComposing || event.keyCode === 32) { //key space
+      movePlayer();
+      reaction();
+      
+    }else if (event.isComposing || event.keyCode === 78) { //key N
+      nitro();
+    }
+  }, false);
+  
+  
+  //TIME REACTION=======================================
+  //dentro da tree
+  let startTime, endTime, responseTime;
+  let responsePhrase= "";
+  
+  function reaction (){
+    endTime = Date.now();
+    responseTime = (endTime - startTime)/1000;
+    //console.log(typeof responseTime,responseTime);
+    if(!responseTime) {
+      alert ('You lose');
+      cancelAnimationFrame(myReq);   
+    }
     
-  }else if (event.isComposing || event.keyCode === 78) { //key N
-    nitro();
-  }
-}, false);
-
-
-//TIME REACTION=======================================
-//dentro da tree
-let startTime, endTime, responseTime;
-let responsePhrase= "";
-
-function reaction (){
-  endTime = Date.now();
-  responseTime = (endTime - startTime)/1000;
-  console.log(typeof responseTime,responseTime);
-  if(!responseTime) {
-    alert ('You lose');
-    cancelAnimationFrame(myReq);
-
-
+    if (responseTime < 0.2)
+    responsePhrase = "Well done The Flash!";
+    else if (responseTime >= 0.20 && responseTime < 0.30)
+    responsePhrase = "Good Job!";
+    else if (responseTime >= 0.30 && responseTime < 0.40)
+    responsePhrase = "Could be better...";
+    else if (responseTime >= 0.40 && responseTime < 0.60)
+    responsePhrase = "Keep practising!";
+    else if (responseTime >= 0.60 && responseTime < 1)
+    responsePhrase = "Have you been drinking?";
+    else if (responseTime >= 1)
+    responsePhrase="Did you fall asleep?";
+    
+    return document.getElementById('timeId').innerHTML = `reaction time: ${responseTime}seconds`,
+    document.getElementById('responsePhrase').innerHTML = responsePhrase;
   }
   
-	if (responseTime < 0.2)
-  responsePhrase = "Well done The Flash!";
-	else if (responseTime >= 0.20 && responseTime < 0.30)
-  responsePhrase = "Good Job!";
-	else if (responseTime >= 0.30 && responseTime < 0.40)
-  responsePhrase = "Could be better...";
-	else if (responseTime >= 0.40 && responseTime < 0.60)
-  responsePhrase = "Keep practising!";
-	else if (responseTime >= 0.60 && responseTime < 1)
-  responsePhrase = "Have you been drinking?";
-	else if (responseTime >= 1)
-  responsePhrase="Did you fall asleep?";
   
-  return document.getElementById('timeId').innerHTML = `reaction time: ${responseTime}seconds`,document.getElementById('responsePhrase').innerHTML = responsePhrase;
-}
-
-
-//LIGHT==========================================================================================
-document.getElementById('start-button').addEventListener("click", startGame);
-let lightsStart = document.getElementsByClassName('light');
-let startOff = document.getElementsByClassName('startLight')
-
-function startGame() {
-  setInterval( function redLight(){
-    lightsStart[0].classList.add("on");
-  },1000);
+  //LIGHT==========================================================================================
+  document.getElementById('start-button').addEventListener("click", startGame);
+  let lightsStart = document.getElementsByClassName('light');
+  let startOff = document.getElementsByClassName('startLight')
+  
+  
+  // let time = Math.random()*1.5;
+  // console.log(time);
+  
+  function startGame() {
+    setInterval( function redLight(){
+      lightsStart[0].classList.add('on');
+    },1000);
   
   setInterval( function yellowLight(){
-    lightsStart[1].classList.add("on");
+    lightsStart[1].classList.add('on');
   },2000);
   
   setInterval( function greenLight(){
-    lightsStart[2].classList.add("on");
+    lightsStart[2].classList.add('on');
+
     moveCPU();
     startTime = Date.now();
-
-
-  },3000);
-  
-  // setInterval( function startLight(){
-    //   startOff.style.display = "none";
-    // },5000);
-    
+  },3000); 
   }
   
   
-  // BACKGROUND MOVING========================================================
+// BACKGROUND MOVING========================================================
   
 // let img = new Image();
 // img.src = 'img/roadTexture.jpg';
@@ -216,23 +248,23 @@ function startGame() {
 //circleRed = new Tree("red",600,40,2000);
 // console.log(circle)
               
-//MODAL
-/*
-let modal = document.getElementById('modal-container');
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-};
-
-
-function modalWindow() {
-    setTimeout(function(){
-        document.getElementById('modal-container').style.display='block'; 
-    }, 200);
-}
-*/
-              
+//MODAL==========================================              
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 })
+
+function settime(){
+  var audio= document.getElementById("myaudio");
+  audio.currentTime = 0;
+  // audio.volume = 100;
+  audio.play();
+  console.log(audio.currentTime);
+  setInterval(function(){
+    //In the if condition I set it to greater than 45. 
+    //So after 5 seconds, the audio will be stopped automatically.
+    if(audio.currentTime>45){
+      
+      audio.pause();
+    }
+  },1000);
+}
