@@ -26,59 +26,61 @@ let myReq;
 
 function draw() {
   carOne.src = './img/porsche.png';
-  carTwo.src = './img/subaru.png';
+  carTwo.src = './img/porsche2.png';
   // carThree.src = './img/police.png';
   
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
   
   //cars
-  ctx.drawImage(carOne, 0 + x1, 10, 140, 150);
-  ctx.drawImage(carTwo, 0 + x2, 210, 140, 150);
+  ctx.drawImage(carOne, -15, 30, 180, 180);
+  ctx.drawImage(carTwo, -15, 190, 180, 180);
   // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
   
   myReq = requestAnimationFrame(draw);
 }
 
 function moveCPU() {
-  if(x1 === 1400 && x2 <1400) {
-    alert ('CPU win!');
-  }
   
   carOne.src = './img/porsche.png';
-  carTwo.src = './img/subaru.png';
+  carTwo.src = './img/porsche2.png';
   // carThree.src = './img/police.png';
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
   x1 += 10;
   
   //cars
-  ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
-  ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
+  ctx.drawImage(carOne, -15 + x1, 30, 180, 180);
+  ctx.drawImage(carTwo, -15 + x2, 190, 180, 180);
   // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
   
   
+  if(x1 === 1400 && x2 < 1400) {
+    alert ('CPU win!');
+    document.getElementById('speedId').style.display="none";
+  }
   myReq = requestAnimationFrame(moveCPU);
 }
 
 function movePlayer() {
-  if (x2 === 1400 && x1 < 1400) {
-    alert ('Player win!');
-  }
   carOne.src = './img/porsche.png';
-  carTwo.src = './img/subaru.png';
+  carTwo.src = './img/porsche2.png';
   // carThree.src = './img/police.png';
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
-  x2 += 10;
+  x2 += 20;
   
   //cars
-  ctx.drawImage(carOne, 0 + x1, 10, 140, 160);
-  ctx.drawImage(carTwo, 0 + x2, 210, 140, 160);
- // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
-
+  ctx.drawImage(carOne, -15 + x1, 30, 180, 180);
+  ctx.drawImage(carTwo, -15 + x2, 190, 180, 180);
+  // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
+  
   //console.log(x2);
-    
+  
+  if (x2 === 1400 && x1 < 1400) {
+    alert = ('Player win!');
+    document.getElementById('speedId').style.display="none";
+  }
   speed.innerText = `${Math.floor(x2/5)} km/h`;
   myReq = requestAnimationFrame(movePlayer);
 }
@@ -94,25 +96,24 @@ window.addEventListener("keydown", event => {
     movePlayer();
     reaction();
     audioStartCarRun();
-    removeKeyDown();
-    console.log(event.keyCode);
+//    removeKeyDown();
 
   }else if (event.keyCode === 78) { //key N
     nitro();
   }
 }, false);
 
-function removeKeyDown (){
-window.removeEventListener('keydown', event => {
-  if (event.keyCode === 32) { //key space
-    movePlayer();
-    reaction();
-    audioStartCarRun();
-  }else if (event.keyCode === 78) { //key N
-    nitro();
-  }
-}, false);
-}
+// function removeKeyDown (){
+// window.removeEventListener('keydown', event => {
+//   if (event.keyCode === 32) { //key space
+//     movePlayer();
+//     reaction();
+//     audioStartCarRun();
+//   }else if (event.keyCode === 78) { //key N
+//     nitro();
+//   }
+// }, false);
+// }
 
 
 //TIME REACTION=======================================
@@ -142,7 +143,7 @@ function reaction (){
   else if (responseTime >= 1)
   responsePhrase="Did you fall asleep?";
   
-  return document.getElementById('timeId').innerHTML = `reaction time: ${responseTime}seconds`,
+  return document.getElementById('timeId').innerHTML = `${responseTime}seconds`,
   document.getElementById('responsePhrase').innerHTML = responsePhrase;
 }
 
@@ -166,19 +167,15 @@ function startGame() {
   },4000);
 
   setTimeout( function greenLight(){
-  lightsStart[2].classList.add('on');
-  audioStartTwo();
-  moveCPU();
-  startTime = Date.now();
+    lightsStart[2].classList.add('on');
+    audioStartTwo();
+    moveCPU();
+    startTime = Date.now();
 
   },6000); 
 }
 
-            
-//MODAL==========================================              
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
+
 
 // AUDIO==================================================
 
@@ -201,6 +198,10 @@ function audioStartCarRun(){
   let audioFour= document.getElementById("audio-four");
   audioFour.play();
 }
+            
+//MODAL==========================================              
+
+
 
 
 // let random = Math.floor(Math.random()*100);
@@ -213,7 +214,7 @@ function audioStartCarRun(){
 //     //   alert ('Player win!');
 //     // }
 //     carOne.src = './img/porsche.png';
-//     carTwo.src = './img/subaru.png';
+//     carTwo.src = './img/porsche2.png';
 //     carThree.src = './img/police.png';
 
 //     ctx.clearRect(0, 0, 1400, 400); // clear canvas

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
 <body>
@@ -16,9 +17,7 @@
             <div class="neon">street </div>
             <div class="flux">outlaws </div>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            modal
-        </button>
+        
         <button class="btn btn-secondary btn-lg" id="start-button" onclick="startGame()">StartGame</button>
     </nav>
     <!-- DISPLAYS======================================== -->
@@ -26,7 +25,7 @@
     <div class="container wallcarbon">
     
         <div class="row">
-            <ul class="col text-box">
+            <ul class="col text-boxes box-one">
               <li class="">speed</li>
               <li id="speedId">0 km/h</li>
             </ul>
@@ -45,7 +44,7 @@
                     </div>                        
                 </div>
             </div>
-            <div class="col text-box text-box-margin">
+            <div class="col text-boxes box-two ">
                 <div>reaction time</div>
                 <div id="timeId"></div>
                 <div id="responsePhrase" class="" role="alert"></div> 
@@ -59,29 +58,8 @@
     </div>
 
 
-      
     <!-- Modal============================================ -->
     
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-        </div>
-    </div>
-    </div>
-
     
     <!-- AUDIOS ==============================================-->
     <audio id="audio-one" src="./audio/Gran Turismo1and2.mp3"></audio>
