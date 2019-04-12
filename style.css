@@ -45,13 +45,13 @@ body > img{
 .box-one {
   font-size: 30px;
   margin-top: 35px;
-  color: yellow;
+  color: rgba(255, 255, 0, 0.9);
 }
 
 .box-two{
   font-size: 20px;
   margin-top: 35px;
-  color: yellow;
+  color: rgba(255, 255, 0, 0.9);
 
 }
 
