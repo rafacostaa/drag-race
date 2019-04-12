@@ -68,14 +68,14 @@ function movePlayer() {
   // carThree.src = './img/police.png';
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
-  x2 += 20;
+  x2 += 15;
   
   //cars
   ctx.drawImage(carOne, -15 + x1, 35, 190, 160);
   ctx.drawImage(carTwo, -17 + x2, 197, 190, 160);
   // ctx.drawImage(carThree, -100 + x2, 115, 150, 170);
   
-  //console.log(x2);
+  console.log(x2);
   
   if (x2 === 1400 && x1 < 1400) {
     alert = ('Player win!');
