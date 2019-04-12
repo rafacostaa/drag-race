@@ -6,7 +6,7 @@ canvas{
     width: 100%;
     /* border-right: dashed 100px white; */
     box-sizing: border-box; 
-    margin: 40px 0;
+    margin: 30px 0; 
     border: 2px solid red;
 
 }
@@ -17,11 +17,7 @@ nav{
 
 }
 
-/* .wallcarbon{
-    background: url('./img/wallcarbon.png') center;
-    background-position: 50% 50%;
-    border: 1px solid green;
-} */
+
 
 /* MODAL================================== */
 .modal-title {
@@ -35,6 +31,8 @@ body > img{
   z-index: -1;
   position: absolute;
   left: 0px;
+  height: 765px;
+  width: 100%;
 }
 
 .text-boxes{
@@ -58,10 +56,10 @@ body > img{
 
 .footer{
   width:42px;
-  height:42px;
+  height:12px;
   border:0;
   float: right;
-  margin-right: 20px;
+  margin: 0 20px 20px;
 }
 
 .footer > a {
