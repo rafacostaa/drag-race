@@ -58,6 +58,8 @@ function moveCPU() {
   if(x1 === 1400 && x2 < 1400) {
     alert ('CPU win!');
     document.getElementById('speedId').style.display="none";
+    window.cancelAnimationFrame(req);
+    window.cancelAnimationFrame(myReq);
   }
   myReq = requestAnimationFrame(moveCPU);
 }
@@ -68,7 +70,7 @@ function movePlayer() {
   // carThree.src = './img/police.png';
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
-  x2 += 15;
+  x2 += 11;
   
   //cars
   ctx.drawImage(carOne, -15 + x1, 35, 190, 160);
@@ -77,12 +79,15 @@ function movePlayer() {
   
   console.log(x2);
   
-  if (x2 === 1400 && x1 < 1400) {
-    alert = ('Player win!');
+  if (x2 >= 1400 && x1 < 1400) {
+    // console.log('entrou no if')
+    alert('Player win!');
     document.getElementById('speedId').style.display="none";
+    window.cancelAnimationFrame(myReq);
+    window.cancelAnimationFrame(req);
   }
   speed.innerText = `${Math.floor(x2/5)} km/h`;
-  myReq = requestAnimationFrame(movePlayer);
+  let req = requestAnimationFrame(movePlayer);
 }
      
 draw();
@@ -99,7 +104,7 @@ window.addEventListener("keydown", event => {
 //    removeKeyDown();
 
   }else if (event.keyCode === 78) { //key N
-    nitro();
+    n = 2;
   }
 }, false);
 
@@ -127,7 +132,12 @@ function reaction (){
   //console.log(typeof responseTime,responseTime);
   if(!responseTime) {
     alert ('You lose');
-    cancelAnimationFrame(myReq);   
+    cancelAnimationFrame(myReq);
+    cancelAnimationFrame(req);
+   // audioThree.stop();
+   document.getElementById('speedId').style.display="none";
+   document.getElementById('timeId').style.display="none";
+
   }
   
   if (responseTime < 0.2)
