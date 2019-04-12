@@ -70,7 +70,7 @@ function movePlayer() {
   // carThree.src = './img/police.png';
   
   ctx.clearRect(0, 0, 1400, 400); // clear canvas
-  x2 += 11;
+  x2 += 15;
   
   //cars
   ctx.drawImage(carOne, -15 + x1, 35, 190, 160);
