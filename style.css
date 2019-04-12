@@ -111,9 +111,18 @@ body {
 
 .pos {
     padding: 9px;
-    margin-top: 8px;
     
 }
+
+.margin-1{    margin-top: 18px;
+  margin-left: 2px;
+}
+
+.margin-2{margin-top: 19px;
+margin-left: 3px;
+
+}
+.margin-3{margin-top: 19px; margin-left: 2px;}
 
 
 .wallcarbon {
