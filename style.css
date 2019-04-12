@@ -50,8 +50,17 @@ nav{
 }
 
 
+.footer{
+  width:42px;
+  height:42px;
+  border:0;
+  float: right;
+  margin-right: 20px;
+}
 
-
+.footer > a {
+  border: 1px solid red;
+}
 /* STARTLIGHT =========================================*/
 
 .light {
