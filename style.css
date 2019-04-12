@@ -31,6 +31,12 @@ nav{
 
 /* div{border: 1px solid red;} */
 
+body > img{
+  z-index: -1;
+  position: absolute;
+  left: 0px;
+}
+
 .text-boxes{
     font-family: 'Racing Sans One', cursive;
     color: whitesmoke;
